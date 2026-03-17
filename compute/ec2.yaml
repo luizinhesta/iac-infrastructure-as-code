@@ -6,6 +6,10 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     Default: LinuxUbuntu
 
+  SecurityStackName:
+    Type: String
+    Default: security-stack
+
 Resources:
 
   EC2Instance:
@@ -20,7 +24,8 @@ Resources:
       SubnetId: !ImportValue network-public-subnet1
 
       SecurityGroupIds:
-        - !ImportValue security-ec2-sg
+        - Fn::ImportValue:
+            Fn::Sub: "${SecurityStackName}-ec2-sg"
 
       UserData:
         Fn::Base64: |
