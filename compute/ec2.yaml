@@ -22,6 +22,16 @@ Resources:
       SecurityGroupIds:
         - !ImportValue security-ec2-sg
 
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          set -e
+          apt-get update -y
+          DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+          apt-get install -y apache2
+          systemctl enable apache2
+          systemctl start apache2
+
       Tags:
         - Key: Name
           Value: ec2-instance
