@@ -1,27 +1,15 @@
-name: deploy-cloudformation
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Main Infrastructure Stack
 
-on:
-  workflow_dispatch:
+Resources:
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: stack1-vpc.yaml
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Deploy VPC stack (stack1-vpc)
-        run: |
-          aws cloudformation deploy \
-            --stack-name stack1-vpc \
-            --template-file stack1-vpc.yaml \
-            --capabilities CAPABILITY_IAM
-          aws cloudformation wait stack-create-complete --stack-name stack1-vpc
-
-      - name: Deploy EC2 stack (stack2-ec2)
-        run: |
-          aws cloudformation deploy \
-            --stack-name stack2-ec2 \
-            --template-file stack2-ec2.yaml \
-            --capabilities CAPABILITY_IAM
+  EC2Stack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: VPCStack
+    Properties:
+      TemplateURL: stack2-ec2.yaml
