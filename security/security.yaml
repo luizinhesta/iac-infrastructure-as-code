@@ -25,4 +25,4 @@ Outputs:
   SecurityGroupId:
     Value: !Ref InstanceSecurityGroup
     Export:
-      Name: security-ec2-sg
+      Name: !Sub "${AWS::StackName}-ec2-sg"
