@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Stack2 EC2 usando recursos de rede importados da stack1.
+Description: EC2 stack
 
 Parameters:
   KeyName:
@@ -17,14 +17,14 @@ Resources:
 
       KeyName: !Ref KeyName
 
-      SubnetId: !ImportValue stack1-public-subnet-1-id
+      SubnetId: !ImportValue network-public-subnet1
 
       SecurityGroupIds:
-        - !ImportValue stack1-security-group-id
+        - !ImportValue security-ec2-sg
 
       Tags:
         - Key: Name
-          Value: stack2-ec2
+          Value: ec2-instance
 
 Outputs:
 
