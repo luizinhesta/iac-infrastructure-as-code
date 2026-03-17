@@ -3,7 +3,6 @@ Description: Stack2 EC2 usando recursos de rede importados da stack1.
 
 Parameters:
   KeyName:
-    Description: Nome da KeyPair existente
     Type: AWS::EC2::KeyPair::KeyName
     Default: LinuxUbuntu
 
@@ -14,9 +13,9 @@ Resources:
     Properties:
       InstanceType: t3.micro
 
-      KeyName: !Ref KeyName
-
       ImageId: ami-0030e4319cbf4dbf2
+
+      KeyName: !Ref KeyName
 
       SubnetId: !ImportValue stack1-public-subnet-1-id
 
@@ -30,13 +29,7 @@ Resources:
 Outputs:
 
   InstanceId:
-    Description: ID da instância EC2
     Value: !Ref EC2Instance
 
-  InstancePublicIp:
-    Description: IP público da instância
+  PublicIP:
     Value: !GetAtt EC2Instance.PublicIp
-
-  ImportedVpcId:
-    Description: VPC importada da stack1
-    Value: !ImportValue stack1-vpc-id
