@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Stack2 EC2 usando recursos de rede importados de stack1.
+Description: Stack2 EC2 usando recursos de rede importados da stack1.
 
 Parameters:
   KeyName:
@@ -7,35 +7,22 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     Default: LinuxUbuntu
 
-Mappings:
-  Region2AMI:
-    us-east-1:
-      AMI: ami-0a313d6098716f372
-    us-east-2:
-      AMI: ami-0db9040eb3ab74509
-    us-west-1:
-      AMI: ami-04b9e92b5572fa0d1
-    us-west-2:
-      AMI: ami-0d6621c01e8c2de2c
-    eu-west-1:
-      AMI: ami-047bb4163c506cd98
-    eu-central-1:
-      AMI: ami-0ac80df6eff0e70b5
-
 Resources:
 
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t3.micro
+
       KeyName: !Ref KeyName
-      ImageId: !FindInMap [Region2AMI, !Ref 'AWS::Region', AMI]
-      NetworkInterfaces:
-        - DeviceIndex: 0
-          SubnetId: !ImportValue stack1-public-subnet-1-id
-          GroupSet:
-            - !ImportValue stack1-security-group-id
-          AssociatePublicIpAddress: true
+
+      ImageId: ami-0030e4319cbf4dbf2
+
+      SubnetId: !ImportValue stack1-public-subnet-1-id
+
+      SecurityGroupIds:
+        - !ImportValue stack1-security-group-id
+
       Tags:
         - Key: Name
           Value: stack2-ec2
@@ -50,6 +37,6 @@ Outputs:
     Description: IP público da instância
     Value: !GetAtt EC2Instance.PublicIp
 
-  VpcIdImported:
+  ImportedVpcId:
     Description: VPC importada da stack1
     Value: !ImportValue stack1-vpc-id
