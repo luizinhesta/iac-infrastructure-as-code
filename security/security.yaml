@@ -6,7 +6,7 @@ Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Allow SSH and ICMP
+      GroupDescription: Allow SSH and HTTP
       VpcId: !ImportValue network-vpc-id
 
       SecurityGroupIngress:
@@ -15,9 +15,9 @@ Resources:
           ToPort: 22
           CidrIp: 0.0.0.0/0
 
-        - IpProtocol: icmp
-          FromPort: -1
-          ToPort: -1
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
           CidrIp: 0.0.0.0/0
 
 Outputs:
