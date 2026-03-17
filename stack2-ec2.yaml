@@ -1,8 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Stack2 EC2 usando recursos de rede importados de stack1.
 
+Parameters:
+  KeyName:
+    Description: Nome da KeyPair existente
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: LinuxUbuntu
+
 Mappings:
-  # KeyPair está fixo como LinuxUbuntu, pois já existe na região de deploy.
   Region2AMI:
     us-east-1:
       AMI: ami-0a313d6098716f372
@@ -18,6 +23,7 @@ Mappings:
       AMI: ami-0ac80df6eff0e70b5
 
 Resources:
+
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
@@ -35,13 +41,14 @@ Resources:
           Value: stack2-ec2
 
 Outputs:
+
   InstanceId:
     Description: ID da instância EC2
     Value: !Ref EC2Instance
 
   InstancePublicIp:
     Description: IP público da instância
-    Value: !GetAtt [EC2Instance, PublicIp]
+    Value: !GetAtt EC2Instance.PublicIp
 
   VpcIdImported:
     Description: VPC importada da stack1
