@@ -1,13 +1,18 @@
 version: 0.2
 
 phases:
+
+  install:
+    commands:
+      - echo Installing dependencies
+
   build:
     commands:
-      - echo "Uploading templates to S3"
+      - echo Uploading templates to S3
 
-      - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucker/network/
-      - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucker/security/
-      - aws s3 cp compute/ec2.yaml s3://iac-cloudformation-templates-bucker/compute/
+      - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucker/network/vpc.yaml
+      - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucker/security/security.yaml
+      - aws s3 cp compute/ec2.yaml s3://iac-cloudformation-templates-bucker/compute/ec2.yaml
 
 artifacts:
   files:
