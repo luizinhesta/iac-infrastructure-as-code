@@ -117,24 +117,24 @@ Outputs:
   VpcId:
     Value: !Ref VPC
     Export:
-      Name: network-vpc-id
+      Name: !Sub "${AWS::StackName}-vpc-id"
 
   PublicSubnet1:
     Value: !Ref PublicSubnet1
     Export:
-      Name: network-public-subnet1
+      Name: !Sub "${AWS::StackName}-public-subnet1"
 
   PublicSubnet2:
     Value: !Ref PublicSubnet2
     Export:
-      Name: network-public-subnet2
+      Name: !Sub "${AWS::StackName}-public-subnet2"
 
   PrivateSubnet1:
     Value: !Ref PrivateSubnet1
     Export:
-      Name: network-private-subnet1
+      Name: !Sub "${AWS::StackName}-private-subnet1"
 
   PrivateSubnet2:
     Value: !Ref PrivateSubnet2
     Export:
-      Name: network-private-subnet2
+      Name: !Sub "${AWS::StackName}-private-subnet2"

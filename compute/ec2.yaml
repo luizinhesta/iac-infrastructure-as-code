@@ -6,6 +6,10 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     Default: LinuxUbuntu
 
+  VpcStackName:
+    Type: String
+    Default: vpc-stack
+
   SecurityStackName:
     Type: String
     Default: security-stack
@@ -21,7 +25,9 @@ Resources:
 
       KeyName: !Ref KeyName
 
-      SubnetId: !ImportValue network-public-subnet1
+      SubnetId:
+        Fn::ImportValue:
+          Fn::Sub: "${VpcStackName}-public-subnet1"
 
       SecurityGroupIds:
         - Fn::ImportValue:

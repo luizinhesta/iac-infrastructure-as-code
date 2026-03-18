@@ -1,13 +1,20 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Security stack
 
+Parameters:
+  VpcStackName:
+    Type: String
+    Default: vpc-stack
+
 Resources:
 
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow SSH and HTTP
-      VpcId: !ImportValue network-vpc-id
+      VpcId:
+        Fn::ImportValue:
+          Fn::Sub: "${VpcStackName}-vpc-id"
 
       SecurityGroupIngress:
         - IpProtocol: tcp
