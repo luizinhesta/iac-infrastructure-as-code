@@ -1,15 +1,17 @@
 version: 0.0
 os: linux
+
 files:
   - source: website/
-    destination: /var/www/html/
-    owner: apache
+    destination: /var/www/html
+
 hooks:
   BeforeInstall:
-  - location: scripts/antes.sh
-      timeout: 30
+    - location: scripts/antes.sh
+      timeout: 300
       runas: root
+
   AfterInstall:
-  - location: scripts/depois.sh
-    timeout: 30
-    runas: root
+    - location: scripts/depois.sh
+      timeout: 300
+      runas: root
