@@ -4,7 +4,7 @@ Description: Security stack
 Parameters:
   VpcStackName:
     Type: String
-    Default: vpc-stack
+    Default: vpc-satck
 
 Resources:
 
