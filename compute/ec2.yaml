@@ -37,12 +37,20 @@ Resources:
         Fn::Base64: |
           #!/bin/bash
           set -e
-          apt-get update -y
-          DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
-      Tags:
-        - Key: Name
-          Value: ec2-instance
+          apt update -y
+          apt install -y ruby wget
+
+          wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+          chmod +x ./install
+          ./install auto
+
+          systemctl enable codedeploy-agent
+          systemctl start codedeploy-agent
+
+            Tags:
+              - Key: Name
+                Value: ec2-instance
 
 Outputs:
 
