@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos DevOps & Cloud - AWS e Infraestrutura Moderna</title>
+    <link rel="stylesheet" href="styles-devops.css">
+</head>
+<body>
+    <!-- CabeÃ§alho -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Projetos DevOps & Cloud - AWS</h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#galeria">Projetos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SeÃ§Ã£o Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Infraestrutura, AutomaÃ§Ã£o e InovaÃ§Ã£o</h2>
+            <p>Transformando ideias em soluÃ§Ãµes escalÃ¡veis na nuvem</p>
+        </div>
+    </section>
+
+    <!-- SEÃ‡ÃƒO SOBRE: AWS Cloud x DevOps -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre: AWS Cloud e DevOps</h2>
+            <div class="sobre-content">
+                <div class="sobre-card">
+                    <h3>O que Ã© Cloud Computing (AWS)?</h3>
+                    <p>
+                        Amazon Web Services (AWS) Ã© uma plataforma de computaÃ§Ã£o em nuvem que oferece uma ampla gama 
+                        de serviÃ§os sob demanda, incluindo armazenamento, processamento, bancos de dados e anÃ¡lise de dados. 
+                        Permite que empresas escalem recursos de TI de forma rÃ¡pida e eficiente, reduzindo custos de infraestrutura.
+                    </p>
+                </div>
+                
+                <div class="sobre-card">
+                    <h3>O que Ã© DevOps?</h3>
+                    <p>
+                        DevOps Ã© uma cultura e prÃ¡tica de engenharia que integra desenvolvimento (Dev) e operaÃ§Ãµes (Ops). 
+                        Focado em automaÃ§Ã£o, integraÃ§Ã£o contÃ­nua, entrega contÃ­nua e monitoramento para melhorar a qualidade 
+                        e velocidade de entrega de software, garantindo confiabilidade e estabilidade em produÃ§Ã£o.
+                    </p>
+                </div>
+
+                <div class="sobre-card">
+                    <h3>A Sinergia AWS + DevOps</h3>
+                    <p>
+                        AWS fornece a infraestrutura escalÃ¡vel e flexÃ­vel que DevOps necessita para implementar prÃ¡ticas modernas. 
+                        Juntos, permitem automaÃ§Ã£o total do deploy, gerenciamento de recursos, monitoramento em tempo real e 
+                        recuperaÃ§Ã£o de falhas, criando um ciclo de desenvolvimento mais Ã¡gil e confiÃ¡vel.
+                    </p>
+                </div>
+            </div>
+    </section>
+
+    <!-- GALERIA DE PROJETOS -->
+    <section id="galeria" class="galeria">
+        <div class="container">
+            <h2 class="section-title">ðŸ“¸ Galeria de Projetos</h2>
+            
+            <!-- Filtros -->
+            <div class="filtros">
+                <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+                <button class="filtro-btn" data-filtro="aws">AWS</button>
+                <button class="filtro-btn" data-filtro="devops">DevOps</button>
+                <button class="filtro-btn" data-filtro="infra">Infraestrutura</button>
+            </div>
+
+            <!-- Grid de Projetos -->
+            <div class="grid-fotos">
+
+                <!-- Projeto 1 -->
+                <div class="foto-item" data-categoria="devops">
+                    <img src="images/imagem(1).jpg" alt="Docker Swarm para AWS">
+                    <div class="foto-overlay">
+                        <h3>Docker Swarm para AWS</h3>
+                        <p>Cluster Docker Swarm implantado na AWS com balanceamento de carga, alta disponibilidade e escalabilidade automÃ¡tica.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 2 -->
+                <div class="foto-item" data-categoria="aws">
+                    <img src="images/imagem(2).jpg" alt="AWS Organizations na PrÃ¡tica">
+                    <div class="foto-overlay">
+                        <h3>AWS Organizations na PrÃ¡tica</h3>
+                        <p>Estrutura multi-contas com governanÃ§a, controle de acesso, billing centralizado e polÃ­ticas SCP aplicadas.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 3 -->
+                <div class="foto-item" data-categoria="aws">
+                    <img src="images/imagem(3).jpg" alt="Amazon VPC">
+                    <div class="foto-overlay">
+                        <h3>Amazon VPC</h3>
+                        <p>Arquitetura de rede segura com sub-redes pÃºblicas e privadas, roteamento, NAT e controle via Security Groups.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 4 -->
+                <div class="foto-item" data-categoria="devops">
+                    <img src="images/imagem(4).jpg" alt="CI/CD com Jenkins e Docker">
+                    <div class="foto-overlay">
+                        <h3>CI/CD com Jenkins e Docker</h3>
+                        <p>Pipeline automatizado de integraÃ§Ã£o contÃ­nua e entrega contÃ­nua com Jenkins, Docker e Git.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 5 -->
+                <div class="foto-item" data-categoria="aws">
+                    <img src="images/imagem(5).jpg" alt="Transit Gateway na PrÃ¡tica">
+                    <div class="foto-overlay">
+                        <h3>Transit Gateway na PrÃ¡tica</h3>
+                        <p>IntegraÃ§Ã£o de mÃºltiplas VPCs e VPNs centralizadas com roteamento avanÃ§ado e conectividade hÃ­brida.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 6 -->
+                <div class="foto-item" data-categoria="devops">
+                    <img src="images/imagem(8).jpg" alt="VPS para AWS">
+                    <div class="foto-overlay">
+                        <h3>Código de Status com o ZABBIX</h3>
+                        <p>Monitoramento e alerta de status de servidores e aplicações com o ZABBIX.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 7 -->
+                <div class="foto-item" data-categoria="aws">
+                    <img src="images/imagem(6).jpg" alt="AWS VPN Site-to-Site para PfSense">
+                    <div class="foto-overlay">
+                        <h3>AWS VPN Site-to-Site para PfSense</h3>
+                        <p>ConexÃ£o hÃ­brida segura entre ambiente on-premises (pfSense) e AWS utilizando VPN IPsec Site-to-Site.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 8 -->
+                <div class="foto-item" data-categoria="devops">
+                    <img src="images/imagem(7).png" alt="Git - RepositÃ³rio Local">
+                    <div class="foto-overlay">
+                        <h3>Git - RepositÃ³rio Local</h3>
+                        <p>Controle de versÃ£o distribuÃ­do com Git, gerenciamento de commits, branches e integraÃ§Ã£o com GitHub.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 9 -->
+                <div class="foto-item" data-categoria="infra">
+                    <img src="images/imagem(9).jpg" alt="Backup e DR">
+                    <div class="foto-overlay">
+                        <h3>AMAZON ECR</h3>
+                        <p>Criando repositórios de contêineres na AWS.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 10 -->
+                <div class="foto-item" data-categoria="aws">
+                    <img src="images/imagem(10).jpg" alt="S3 com CloudFront">
+                    <div class="foto-overlay">
+                        <h3>AMAZON RDS</h3>
+                        <p>Configurar RDS na AWS.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 11 -->
+                <div class="foto-item" data-categoria="devops">
+                    <img src="images/imagem(11).jpg" alt="Docker Compose Padrao">
+                    <div class="foto-overlay">
+                        <h3>Git Branch e Merge na AWS CodeCommit</h3>
+                        <p>Padronizacao de servicos locais com variaveis e perfis de execucao.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 12 -->
+                <div class="foto-item" data-categoria="infra">
+                    <img src="images/imagem(12).jpg" alt="Hardening Linux">
+                    <div class="foto-overlay">
+                        <h3>AWS IAM na Prática ROLES VS POLICES</h3>
+                        <p>Trabalhar com Roles e Polices na AWS.</p>
+                    </div>
+                </div>
+
+                <!-- Projeto 13 -->
+                <div class="foto-item" data-categoria="aws">
+                    <img src="images/imagem(13).jpg" alt="RDS Multi-AZ">
+                    <div class="foto-overlay">
+                        <h3>VPS PARA AWS</h3>
+                        <p>Migração e integração de servidor VPS para AWS com automação de provisionamento e infraestrutura como código.</p>
+                    </div>
+                </div>
+            </div>
+
+    <!-- RodapÃ©/Contato -->
+    <footer id="contato" class="footer">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <p>ðŸ“§ Email: luizaugusouza@gmail.com</p>
+            <p>ðŸ’¼ LinkedIn: https://www.linkedin.com/in/luiz-inhesta-341b4b311/</p>
+            <p>ðŸ™ GitHub: https://github.com/luizinhesta</p>
+            <p class="copyright">Â© 2026 DevOps & Cloud Projects. Todos os direitos reservados Luiz Inhesta.</p>
+        </div>
+    </footer>
+
+    <script src="script-devops.js"></script>
+</body>
+</html>
+
+
+
+
