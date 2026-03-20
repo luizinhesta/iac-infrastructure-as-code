@@ -25,32 +25,30 @@ Resources:
 
       KeyName: !Ref KeyName
 
-      SubnetId:
-        Fn::ImportValue:
-          Fn::Sub: "${VpcStackName}-public-subnet1"
+      SubnetId: !ImportValue
+        Fn::Sub: ${VpcStackName}-public-subnet1
 
       SecurityGroupIds:
-        - Fn::ImportValue:
-            Fn::Sub: "${SecurityStackName}-ec2-sg"
+        - !ImportValue
+          Fn::Sub: ${SecurityStackName}-ec2-sg
 
-      UserData:
-        Fn::Base64: |
-          #!/bin/bash
-          set -e
+      UserData: !Base64 |
+        #!/bin/bash
+        set -e
 
-          apt update -y
-          apt install -y ruby wget
+        apt update -y
+        apt install -y ruby wget
 
-          wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
-          chmod +x ./install
-          ./install auto
+        wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+        chmod +x ./install
+        ./install auto
 
-          systemctl enable codedeploy-agent
-          systemctl start codedeploy-agent
+        systemctl enable codedeploy-agent
+        systemctl start codedeploy-agent
 
-            Tags:
-              - Key: Name
-                Value: ec2-instance
+          Tags:
+            - Key: Name
+              Value: ec2-instance
 
 Outputs:
 

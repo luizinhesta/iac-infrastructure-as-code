@@ -1,17 +1,25 @@
+# Versão do formato do appspec (para EC2 sempre 0.0)
 version: 0.0
+
+# Sistema operacional da instância de destino
 os: linux
 
+# Define quais arquivos serão copiados para a EC2
 files:
-  - source: website/
-    destination: /var/www/html
+  - source: website/              # Pasta no repositório (origem dos arquivos)
+    destination: /var/www/html   # Caminho na EC2 (destino - pasta do Apache)
 
+# Hooks = scripts executados durante o deploy
 hooks:
-  BeforeInstall:
-    - location: scripts/antes.sh
-      timeout: 300
-      runas: root
 
+  # Executa antes de copiar os arquivos
+  BeforeInstall:
+    - location: scripts/antes.sh  # Script que prepara o ambiente (instala pacotes, etc.)
+      timeout: 300                # Tempo máximo de execução (em segundos)
+      runas: root                # Executa como root (permissão total)
+
+  # Executa depois que os arquivos foram copiados
   AfterInstall:
-    - location: scripts/depois.sh
-      timeout: 300
-      runas: root
+    - location: scripts/depois.sh # Script pós-instalação (permissões, ajustes, etc.)
+      timeout: 300                # Tempo máximo de execução
+      runas: root                # Executa como root

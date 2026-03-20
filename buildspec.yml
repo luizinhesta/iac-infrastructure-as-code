@@ -1,19 +1,29 @@
+# Versão do buildspec (padrão do CodeBuild)
 version: 0.2
 
+# Fases do processo de build
 phases:
 
+  # Fase de instalação (preparação do ambiente)
   install:
     commands:
-      - echo Installing dependencies
+      - echo Installing dependencies   # Apenas imprime mensagem no log
 
+  # Fase principal (onde acontece a execução)
   build:
     commands:
-      - echo Uploading templates to S3
+      - echo Uploading templates to S3   # Log informando o que está acontecendo
 
+      # Envia o template da VPC para o S3
       - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucker/network/vpc.yaml
+
+      # Envia o template de segurança (SG, etc)
       - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucker/security/security.yaml
+
+      # Envia o template de EC2 para o S3
       - aws s3 cp compute/ec2.yaml s3://iac-cloudformation-templates-bucker/compute/ec2.yaml
 
+# Define quais arquivos serão gerados como artefato do build
 artifacts:
   files:
-    - '**/*'
+    - '**/*'   # Inclui TODOS os arquivos do projeto

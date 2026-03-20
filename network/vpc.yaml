@@ -8,9 +8,9 @@ Parameters:
 
 Resources:
 
-############################
-# VPC
-############################
+  ############################
+  # VPC
+  ############################
 
   VPC:
     Type: AWS::EC2::VPC
@@ -22,9 +22,9 @@ Resources:
         - Key: Name
           Value: network-vpc
 
-############################
-# Internet Gateway
-############################
+  ############################
+  # Internet Gateway
+  ############################
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
@@ -35,9 +35,9 @@ Resources:
       VpcId: !Ref VPC
       InternetGatewayId: !Ref InternetGateway
 
-############################
-# Route Table Public
-############################
+  ############################
+  # Route Table Public
+  ############################
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -52,16 +52,18 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
 
-############################
-# Public Subnets
-############################
+  ############################
+  # Public Subnets
+  ############################
 
   PublicSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.1.0/24
-      AvailabilityZone: !Select [0, !GetAZs ""]
+      AvailabilityZone: !Select
+        - 0
+        - !GetAZs ''
       MapPublicIpOnLaunch: true
 
   PublicSubnet2:
@@ -69,19 +71,23 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.2.0/24
-      AvailabilityZone: !Select [1, !GetAZs ""]
+      AvailabilityZone: !Select
+        - 1
+        - !GetAZs ''
       MapPublicIpOnLaunch: true
 
-############################
-# Private Subnets
-############################
+  ############################
+  # Private Subnets
+  ############################
 
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.11.0/24
-      AvailabilityZone: !Select [0, !GetAZs ""]
+      AvailabilityZone: !Select
+        - 0
+        - !GetAZs ''
       MapPublicIpOnLaunch: false
 
   PrivateSubnet2:
@@ -89,12 +95,14 @@ Resources:
     Properties:
       VpcId: !Ref VPC
       CidrBlock: 10.0.12.0/24
-      AvailabilityZone: !Select [1, !GetAZs ""]
+      AvailabilityZone: !Select
+        - 1
+        - !GetAZs ''
       MapPublicIpOnLaunch: false
 
-############################
-# Associations
-############################
+  ############################
+  # Associations
+  ############################
 
   PublicSubnet1Assoc:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -117,24 +125,24 @@ Outputs:
   VpcId:
     Value: !Ref VPC
     Export:
-      Name: !Sub "${AWS::StackName}-vpc-id"
+      Name: !Sub ${AWS::StackName}-vpc-id
 
   PublicSubnet1:
     Value: !Ref PublicSubnet1
     Export:
-      Name: !Sub "${AWS::StackName}-public-subnet1"
+      Name: !Sub ${AWS::StackName}-public-subnet1
 
   PublicSubnet2:
     Value: !Ref PublicSubnet2
     Export:
-      Name: !Sub "${AWS::StackName}-public-subnet2"
+      Name: !Sub ${AWS::StackName}-public-subnet2
 
   PrivateSubnet1:
     Value: !Ref PrivateSubnet1
     Export:
-      Name: !Sub "${AWS::StackName}-private-subnet1"
+      Name: !Sub ${AWS::StackName}-private-subnet1
 
   PrivateSubnet2:
     Value: !Ref PrivateSubnet2
     Export:
-      Name: !Sub "${AWS::StackName}-private-subnet2"
+      Name: !Sub ${AWS::StackName}-private-subnet2
