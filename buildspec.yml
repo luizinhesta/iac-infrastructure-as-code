@@ -1,27 +1,27 @@
+# Versão do buildspec (padrão do CodeBuild)
 version: 0.2
 
+# Fases do processo de build
 phases:
 
   install:
     commands:
-      - echo "========== INICIO DO BUILD =========="
-      - echo "Preparando ambiente..."
-      - aws --version
+      - echo "========== INICIO DO BUILD =========="  # Marca o início do processo no log
+      - echo "Preparando ambiente..."               # Mensagem informativa (não executa ação)
 
   build:
     commands:
-      - echo "========== DEBUG =========="
-      - pwd
-      - ls -la
-      - find .
+      - echo "========== INICIO UPLOAD =========="  # Início da etapa de upload para o S3
 
-      - echo "========== UPLOAD =========="
+      - echo "Subindo VPC..."                      # Log antes de enviar o template da VPC
+      - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucket/network/vpc.yaml  # Upload do template de VPC para o S3
 
-      - aws s3 cp network/ s3://iac-cloudformation-templates-bucket/network/ --recursive || echo "Erro network"
-      - aws s3 cp security/ s3://iac-cloudformation-templates-bucket/security/ --recursive || echo "Erro security"
+      - echo "Subindo Security..."                 # Log antes de enviar o template de segurança
+      - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucket/security/security.yaml  # Upload do template de segurança (Security Group)
 
-      - echo "========== FINALIZADO =========="
+      - echo "========== FINALIZADO =========="    # Indica que o processo terminou com sucesso
 
+# Define quais arquivos serão gerados como artefato do build
 artifacts:
   files:
-    - '**/*'
+    - '**/*'   # Inclui TODOS os arquivos do projeto como artefato
