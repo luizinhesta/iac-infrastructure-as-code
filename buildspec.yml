@@ -4,26 +4,27 @@ version: 0.2
 # Fases do processo de build
 phases:
 
-  # Fase de instalação (preparação do ambiente)
   install:
     commands:
-      - echo Installing dependencies   # Apenas imprime mensagem no log
+      - echo "========== INICIO DO BUILD =========="  # Marca o início do processo no log
+      - echo "Preparando ambiente..."               # Mensagem informativa (não executa ação)
 
-  # Fase principal (onde acontece a execução)
   build:
     commands:
-      - echo Uploading templates to S3   # Log informando o que está acontecendo
+      - echo "========== INICIO UPLOAD =========="  # Início da etapa de upload para o S3
 
-      # Envia o template da VPC para o S3
-      - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucker/network/vpc.yaml
+      - echo "Subindo VPC..."                      # Log antes de enviar o template da VPC
+      - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucker/network/vpc.yaml  # Upload do template de VPC para o S3
 
-      # Envia o template de segurança (SG, etc)
-      - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucker/security/security.yaml
+      - echo "Subindo Security..."                 # Log antes de enviar o template de segurança
+      - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucker/security/security.yaml  # Upload do template de segurança (Security Group)
 
-      # Envia o template de EC2 para o S3
-      - aws s3 cp compute/ec2.yaml s3://iac-cloudformation-templates-bucker/compute/ec2.yaml
+      - echo "Subindo EC2..."                     # Log antes de enviar o template da EC2
+      - aws s3 cp compute/ec2.yaml s3://iac-cloudformation-templates-bucker/compute/ec2.yaml  # Upload do template da EC2 para o S3
+
+      - echo "========== FINALIZADO =========="    # Indica que o processo terminou com sucesso
 
 # Define quais arquivos serão gerados como artefato do build
 artifacts:
   files:
-    - '**/*'   # Inclui TODOS os arquivos do projeto
+    - '**/*'   # Inclui TODOS os arquivos do projeto como artefato
