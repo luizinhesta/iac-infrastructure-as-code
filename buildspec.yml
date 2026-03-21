@@ -6,6 +6,9 @@ phases:
     commands:
       - echo "========== INICIO DO BUILD =========="
       - echo "Preparando ambiente..."
+      - echo "Instalando AWS CLI..."
+      - yum install -y awscli
+      - aws --version
 
   build:
     commands:
