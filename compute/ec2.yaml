@@ -36,15 +36,15 @@ Resources:
         #!/bin/bash
         set -e
 
+        # Atualiza pacotes
         apt update -y
-        apt install -y ruby wget
 
-        wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
-        chmod +x ./install
-        ./install auto
+        # Instala Apache
+        apt install -y apache2
 
-        systemctl enable codedeploy-agent
-        systemctl start codedeploy-agent
+        # Inicia Apache
+        systemctl start apache2
+        systemctl enable apache2
 
           Tags:
             - Key: Name
