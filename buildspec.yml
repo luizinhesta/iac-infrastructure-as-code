@@ -19,6 +19,9 @@ phases:
 
       - echo "Subindo pasta security..."
       - aws s3 cp security/ s3://iac-cloudformation-templates-bucket/security/ --recursive
+      
+      - echo "Subindo pasta compute..."
+      - aws s3 cp compute/ s3://iac-cloudformation-templates-bucket/compute/ --recursive
 
       - echo "========== FINALIZADO =========="
 

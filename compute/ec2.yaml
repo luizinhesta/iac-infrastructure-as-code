@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 stack
+
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: LinuxUbuntu
+
+  VpcStackName:
+    Type: String
+    Default: vpc-stack
+
+  SecurityStackName:
+    Type: String
+    Default: security-stack
+
+Resources:
+
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.micro
+
+      ImageId: ami-0030e4319cbf4dbf2
+
+      KeyName: !Ref KeyName
+
+      SubnetId: !ImportValue
+        Fn::Sub: ${VpcStackName}-public-subnet1
+
+      SecurityGroupIds:
+        - !ImportValue
+          Fn::Sub: ${SecurityStackName}-ec2-sg
+
+      UserData: !Base64 |
+        #!/bin/bash
+        set -e
+
+        apt update -y
+        apt install -y ruby wget
+
+        wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+        chmod +x ./install
+        ./install auto
+
+        systemctl enable codedeploy-agent
+        systemctl start codedeploy-agent
+
+          Tags:
+            - Key: Name
+              Value: ec2-instance
+
+Outputs:
+
+  InstanceId:
+    Value: !Ref EC2Instance
+
+  PublicIP:
+    Value: !GetAtt EC2Instance.PublicIp
