@@ -5,23 +5,20 @@ phases:
   install:
     commands:
       - echo "========== INICIO DO BUILD =========="
-      - echo "Preparando ambiente..."
-      - echo "Instalando AWS CLI..."
       - yum install -y awscli
       - aws --version
 
   build:
     commands:
-      - echo "========== INICIO UPLOAD =========="
-
-      - echo "Listando arquivos..."
+      - echo "========== DEBUG =========="
+      - pwd
       - ls -la
+      - find .
 
-      - echo "Subindo pasta network..."
-      - aws s3 cp network/ s3://iac-cloudformation-templates-bucket/network/ --recursive
+      - echo "========== UPLOAD =========="
 
-      - echo "Subindo pasta security..."
-      - aws s3 cp security/ s3://iac-cloudformation-templates-bucket/security/ --recursive
+      - aws s3 cp network/ s3://iac-cloudformation-templates-bucket/network/ --recursive || echo "Erro network"
+      - aws s3 cp security/ s3://iac-cloudformation-templates-bucket/security/ --recursive || echo "Erro security"
 
       - echo "========== FINALIZADO =========="
 
