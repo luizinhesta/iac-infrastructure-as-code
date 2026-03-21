@@ -14,13 +14,10 @@ phases:
       - echo "========== INICIO UPLOAD =========="  # Início da etapa de upload para o S3
 
       - echo "Subindo VPC..."                      # Log antes de enviar o template da VPC
-      - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucker/network/vpc.yaml  # Upload do template de VPC para o S3
+      - aws s3 cp network/vpc.yaml s3://iac-cloudformation-templates-bucket/network/vpc.yaml  # Upload do template de VPC para o S3
 
       - echo "Subindo Security..."                 # Log antes de enviar o template de segurança
-      - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucker/security/security.yaml  # Upload do template de segurança (Security Group)
-
-      - echo "Subindo EC2..."                     # Log antes de enviar o template da EC2
-      - aws s3 cp compute/ec2.yaml s3://iac-cloudformation-templates-bucker/compute/ec2.yaml  # Upload do template da EC2 para o S3
+      - aws s3 cp security/security.yaml s3://iac-cloudformation-templates-bucket/security/security.yaml  # Upload do template de segurança (Security Group)
 
       - echo "========== FINALIZADO =========="    # Indica que o processo terminou com sucesso
 
