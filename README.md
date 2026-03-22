@@ -96,11 +96,11 @@ Git Local → GitHub → CodePipeline → CodeBuild → S3 → CloudFormation �
 
 ## YouTube
 
-https://SEU-LINK-YOUTUBE
+https://youtu.be/ZkzzVgJWthw
 
 ## LinkedIn
 
-https://SEU-LINK-LINKEDIN
+https://www.linkedin.com/in/luiz-inhesta-341b4b311/
 
 ------------------------------------------------------------------------
 
