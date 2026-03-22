@@ -1,0 +1,45 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:logs:us-east-1:319165778373:log-group:/aws/codebuild/teste",
+                "arn:aws:logs:us-east-1:319165778373:log-group:/aws/codebuild/teste:*"
+            ],
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::codepipeline-us-east-1-*",
+                "arn:aws:s3:::iac-cloudformation-templates-bucket",  ----------Colocar o nome ARN do Bucket
+                "arn:aws:s3:::iac-cloudformation-templates-bucket/*" ---------Colocar o nome ARN do Bucket
+            ],
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:GetBucketAcl",
+                "s3:GetBucketLocation"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages"
+            ],
+            "Resource": [
+                "arn:aws:codebuild:us-east-1:319165778373:report-group/teste-*"
+            ]
+        }
+    ]
+}
